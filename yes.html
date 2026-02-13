@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Yay! You Said Yes!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+      background: radial-gradient(circle, #ffdde1, #ee9ca7, #ff758c);
+      color: #fff;
+      padding-top: 100px;
+      animation: fadeIn 2s ease-in;
+      overflow: hidden;
+    }
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+    h1 { font-family: 'Pacifico', cursive; font-size: 3em; margin-bottom: 20px; }
+    p { font-size: 1.3em; margin-bottom: 40px; }
+    .btn {
+      padding: 15px 40px;
+      font-size: 20px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      background: #ff4b5c;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease;
+    }
+    .btn:hover { transform: scale(1.1); }
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      top: -10px;
+      animation: fall 3s linear forwards;
+    }
+    @keyframes fall {
+      to { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Yay! You said YES! 🎉</h1>
+  <p>Thank you for being my Valentine—get ready to fill the world with our joy and love! ✨</p>
+  <button class="btn" onclick="location.href='index.html'">Back to the main page</button>
+
+  <script>
+    function createConfetti() {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      document.body.appendChild(confetti);
+
+      confetti.style.left = Math.random() * window.innerWidth + 'px';
+      confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+
+      setTimeout(() => { confetti.remove(); }, 3000);
+    }
+
+    let duration = 2000;
+    let end = Date.now() + duration;
+    (function frame() {
+      createConfetti();
+      if (Date.now() < end) requestAnimationFrame(frame);
+    }());
+  </script>
+</body>
+</html>
